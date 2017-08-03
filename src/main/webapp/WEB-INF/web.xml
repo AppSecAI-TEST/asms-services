@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-	<display-name>Akaperi Services</display-name>
+	<display-name>Akaperi Technologies Pvt Ltd.</display-name>
 		<listener>
 		<listener-class>
 			org.springframework.web.context.ContextLoaderListener
@@ -43,7 +43,7 @@
  
 	<servlet-mapping>
 		<servlet-name>jersey-servlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/webapps/*</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -54,7 +54,7 @@
 	
 	<filter-mapping>  
   <filter-name>AuthorisationFilter</filter-name>  
-  <url-pattern>/*</url-pattern>  
+  <url-pattern>/webapps/*</url-pattern>  
  </filter-mapping>
 	
 	<session-config>

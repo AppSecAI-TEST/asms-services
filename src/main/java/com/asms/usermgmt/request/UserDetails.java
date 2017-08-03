@@ -18,6 +18,8 @@ public class UserDetails {
 	private String subRole;
 	
 	private StudentDetails studentDetails;
+	
+	private ManagementDetails managementDetails;  
 
 	public String getUserId() {
 		return userId;
@@ -59,13 +61,23 @@ public class UserDetails {
 		this.subRole = subRole;
 	}
 
-	public StudentDetails getStudenrDetails() {
-		return studenrDetails;
+	public StudentDetails getStudentDetails() {
+		return studentDetails;
 	}
 
-	public void setStudenrDetails(StudentDetails studenrDetails) {
-		this.studenrDetails = studenrDetails;
+	public void setStudentDetails(StudentDetails studentDetails) {
+		this.studentDetails = studentDetails;
 	}
+
+	public ManagementDetails getManagementDetails() {
+		return managementDetails;
+	}
+
+	public void setManagementDetails(ManagementDetails managementDetails) {
+		this.managementDetails = managementDetails;
+	}
+
+
 	
 	
 	

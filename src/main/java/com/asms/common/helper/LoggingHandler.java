@@ -86,6 +86,7 @@ public class LoggingHandler {
 		
 		String className = joinPoint.getSignature().getDeclaringTypeName();
 		String methodName = joinPoint.getSignature().getName();
+		@SuppressWarnings("unused")
 		String returnValue = this.getValue(Arrays.toString(joinPoint.getArgs()));
 		log.error("SessionId: " + MDC.get("sessionId") + "   " + "Method: " + className + methodName + "   "
 				+ "Exception : " + exception.getCause());
@@ -103,6 +104,7 @@ public class LoggingHandler {
 			
 			String className = joinPoint.getSignature().getDeclaringTypeName();
 			String methodName = joinPoint.getSignature().getName();
+			@SuppressWarnings("unused")
 			String returnValue = this.getValue(Arrays.toString(joinPoint.getArgs()));
 			Object result = joinPoint.proceed();
 			long elapsedTime = System.currentTimeMillis() - start;

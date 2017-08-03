@@ -1,5 +1,6 @@
 package com.asms.usermgmt.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -42,16 +44,12 @@ public class User {
 	@JoinColumn(name = "role_id")
 	private Role roleObject;
 
-	
 	@ManyToOne
 	@JoinColumn(name = "sub_role_id")
 	private SubRole subRoleObject;
 	
-	//@OneToOne(cascade = CascadeType.ALL, mappedBy = "bookingObject")
-	//private RejectedBooking rejectedBookingObject;
-	
-
-	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "userObject")
+	private Management managementObject; 
 	
 	
 	public String getUserId() {
@@ -103,8 +101,12 @@ public class User {
 	public void setSubRoleObject(SubRole subRoleObject) {
 		this.subRoleObject = subRoleObject;
 	}
-	
-	
 
-	
+	public Management getManagementObject() {
+		return managementObject;
+	}
+
+	public void setManagementObject(Management managementObject) {
+		this.managementObject = managementObject;
+	}
 }

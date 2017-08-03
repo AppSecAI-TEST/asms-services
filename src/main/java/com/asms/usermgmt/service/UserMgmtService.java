@@ -18,12 +18,14 @@ import org.springframework.stereotype.Service;
 
 import com.asms.Exception.AsmsException;
 import com.asms.adminmgmt.entity.Admin;
-import com.asms.common.auth.PrivilegesManager;
 import com.asms.common.helper.AsmsHelper;
 import com.asms.common.response.FailureResponse;
 import com.asms.common.service.BaseService;
+import com.asms.usermgmt.auth.PrivilegesManager;
 import com.asms.usermgmt.dao.UserMgmtDao;
+import com.asms.usermgmt.helper.PrincipalUser;
 import com.asms.usermgmt.helper.Validator;
+import com.asms.usermgmt.request.UserDetails;
 import com.asms.usermgmt.request.UserRequest;
 
 /*
@@ -33,7 +35,6 @@ import com.asms.usermgmt.request.UserRequest;
 
 @Service
 @Component
-@Path("/user")
 
 public class UserMgmtService extends BaseService {
 
@@ -63,14 +64,21 @@ public class UserMgmtService extends BaseService {
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public Response register(UserRequest userRequest) {
 		try {
-
 			// validate request
 			validator.validateRequest(userRequest);
 			// authorize
-
-			privilegesManager.isPrivileged(userRequest.getLoggedInUserEmail(), userRequest.getUserRole(),
+			
+			//check if logged in user has got rights to create user
+			PrincipalUser user = privilegesManager.isPrivileged(userRequest.getLoggedInUserEmail(), userRequest.getUserRole(),
 					userRequest.getRequestType());
-
+			if(user.isPrivileged()) {
+				UserDetails userDetails = userRequest.getUserDetails();
+				userDetails.setRole(userRequest.getUserRole());
+				 userMgmtDao.registerUser(userDetails,user.getLoggedInUser());
+				
+			}else {
+				//  throw authorization error
+			}
 			return Response.status(200).entity("success").build();
 		} catch (AsmsException ex) {
 			// construct failure response

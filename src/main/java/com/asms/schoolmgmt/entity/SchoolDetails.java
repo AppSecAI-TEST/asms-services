@@ -31,8 +31,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "school_details")
 public class SchoolDetails {
-	
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

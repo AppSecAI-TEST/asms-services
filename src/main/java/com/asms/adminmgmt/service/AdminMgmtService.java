@@ -10,14 +10,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.jboss.logging.MessageLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.asms.Exception.ExceptionHandler;
 import com.asms.adminmgmt.dao.AdminMgmtDao;
 import com.asms.adminmgmt.entity.Admin;
 import com.asms.common.helper.AsmsHelper;
@@ -36,8 +34,6 @@ public class AdminMgmtService extends BaseService{
 	
 	@Autowired
 	private AdminMgmtDao adminMgmtDao;
-	private ExceptionHandler exceptionHandler;
-	
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminMgmtService.class);
 

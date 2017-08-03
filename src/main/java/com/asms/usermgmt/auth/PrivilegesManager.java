@@ -1,4 +1,4 @@
-package com.asms.common.auth;
+package com.asms.usermgmt.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import com.asms.Exception.AsmsException;
 import com.asms.common.helper.Constants;
 import com.asms.usermgmt.dao.UserMgmtDao;
+import com.asms.usermgmt.entity.User;
+import com.asms.usermgmt.helper.PrincipalUser;
 
 /*
  * PrivilegesManager : For each request this class checks whether
@@ -13,14 +15,11 @@ import com.asms.usermgmt.dao.UserMgmtDao;
  * 					   requested action 
  * 
  */
-
-
-
 @Component
 public class PrivilegesManager {
 	
-	@Autowired
-	UserMgmtDao userMgmtDao;
+@Autowired
+private UserMgmtDao userMgmtDao;
 	
 	/*
 	 * Method : isPrivileged
@@ -30,17 +29,16 @@ public class PrivilegesManager {
 	 * This method checks if the logged in user is privileged to do the requested
 	 * action
 	 */
-	public boolean isPrivileged(String userEmail, String role, String action) throws AsmsException {
+	public PrincipalUser isPrivileged(String userEmail, String role, String action) throws AsmsException {
 		
-		boolean isPrivileged = false;
-		String loggedInUserRole = userMgmtDao.getUserRole(userEmail);
-		if(Constants.role_admin.equalsIgnoreCase(loggedInUserRole)){
-			isPrivileged = true;
+		PrincipalUser pUser = new PrincipalUser();
+		User user = userMgmtDao.getUser(userEmail);
+		if(Constants.role_admin.equalsIgnoreCase(user.getRoleObject().getRoleName())){
+			pUser.setPrivileged(true);
+			pUser.setLoggedInUser(user);
 		}else {
 			
 		}
-		return isPrivileged;
+		return pUser;
 	}
-	
-
 }

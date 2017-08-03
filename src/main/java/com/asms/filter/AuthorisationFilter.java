@@ -35,9 +35,12 @@ public class AuthorisationFilter implements Filter {
 		//logger.info("Session ID {}", session.getId());
 		//logger.info("Customer information {}", session.getAttribute("customer"));
 		MDC.put("sessionId", session.getId());
+		@SuppressWarnings("unused")
 		String url = httpServletRequest.getRequestURI().toString();
+		@SuppressWarnings("unused")
 		String requestType=httpServletRequest.getMethod();
 		//logger.debug("url: " + url);
+		@SuppressWarnings("unused")
 		String userid = "";
 
 		String authCode = "";

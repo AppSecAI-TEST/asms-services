@@ -3,6 +3,10 @@ package com.asms.Exception;
 /*class AsmsException*/
 public class AsmsException extends Exception
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String code;
 	private String Description; 
 	

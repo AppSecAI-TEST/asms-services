@@ -1,7 +1,5 @@
 package com.asms.usermgmt.request;
 
-import com.asms.usermgmt.entity.User;
-
 /* User Request class represents the request object
  * for user management operations 
  * 
@@ -16,7 +14,7 @@ public class UserRequest {
 	private String userRole;
 
 	// object is for user object
-	private User userDetails;
+	private UserDetails userDetails;
 	
 	//logged in user's email
 	private String loggedInUserEmail;
@@ -38,11 +36,11 @@ public class UserRequest {
 	}
 
 	
-	public User getUserDetails() {
+	public UserDetails getUserDetails() {
 		return userDetails;
 	}
 
-	public void setUserDetails(User userDetails) {
+	public void setUserDetails(UserDetails userDetails) {
 		this.userDetails = userDetails;
 	}
 
